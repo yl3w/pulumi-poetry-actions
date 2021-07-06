@@ -45,5 +45,4 @@ jobs:
               uses: pulumi/actions@v3
               with:
                   command: preview
-                  stack-name: dev
                   cloud-url: s3://accrue-pulumi
