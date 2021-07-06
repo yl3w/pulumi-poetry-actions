@@ -5,7 +5,7 @@ name: Build pull request
 
 jobs:
   build:
-    name: Compile
+    name: Prepare dependencies
     runs-on: ubuntu-latest
 
     steps:
