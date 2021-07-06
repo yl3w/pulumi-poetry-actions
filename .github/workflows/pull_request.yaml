@@ -28,6 +28,9 @@ jobs:
                   aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
                   aws-region: us-east-1
 
+
+            - run: python --version
+
             # ----------------------------------------------
             #          install & configure poetry
             # ----------------------------------------------
@@ -38,11 +41,13 @@ jobs:
 
             - name: Install dependencies
               run: |
-                  poetry install --no-interaction
+                  poetry install --no-interaction --no-root
 
             # ----------------------------------------------
             #          Run pulumi in preview mode
             # ----------------------------------------------
+
+            - run: python --version
 
             - name: Run pulumi preview
               uses: pulumi/actions@v3
