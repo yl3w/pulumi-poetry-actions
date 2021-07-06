@@ -34,11 +34,11 @@ jobs:
             - name: Install Poetry
               uses: snok/install-poetry@v1.1.6
               with:
-                  virtualenvs-create: false
+                  virtualenvs-create: true
 
             - name: Install dependencies
               run: |
-                  poetry install --no-interaction --no-root
+                  poetry install --no-interaction
 
             # ----------------------------------------------
             #          Run pulumi in preview mode
@@ -46,6 +46,7 @@ jobs:
 
             - name: Run pulumi preview
               run: |
+                  which pulumi
                   poetry run pulumi login s3://accrue-pulumi
                   poetry run pulumi preview -s dev
               # uses: pulumi/actions@v3
