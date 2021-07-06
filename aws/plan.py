@@ -1,2 +1,2 @@
-def setup() -> None:
+def execute() -> None:
     print("Running setup")
