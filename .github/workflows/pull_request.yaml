@@ -30,6 +30,7 @@ jobs:
 
 
             - run: python --version
+            - run: python -c "print('success')"
 
             # ----------------------------------------------
             #          install & configure poetry
@@ -48,6 +49,7 @@ jobs:
             # ----------------------------------------------
 
             - run: python --version
+            - run: python -c "import pulumi; print('success')"
 
             - name: Run pulumi preview
               uses: pulumi/actions@v3
