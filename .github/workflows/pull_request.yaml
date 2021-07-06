@@ -46,3 +46,4 @@ jobs:
               with:
                   command: preview
                   stack-name: dev
+                  cloud-url: s3://accrue-pulumi
