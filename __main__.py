@@ -1,3 +1,3 @@
-from aws import setup
+from aws import plan
 
-setup.setup()
+plan.execute()
