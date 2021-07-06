@@ -40,3 +40,9 @@ jobs:
             - name: Install dependencies
               run: |
                   poetry install --no-interaction
+
+            - name: Run pulumi preview
+              uses: pulumi/actions@v3
+              with:
+                  command: preview
+                  stack-name: dev
