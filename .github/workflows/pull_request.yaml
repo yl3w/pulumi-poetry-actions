@@ -7,7 +7,8 @@ name: Create preview of infrastructure changes
 jobs:
     build:
         runs-on: ubuntu-latest
-
+        env:
+            PULUMI_CONFIG_PASSPHRASE: ${{ secrets.PULUMI_CONFIG_PASSPHRASE }}
         steps:
             # ----------------------------------------------
             #  check-out repo, set up python, configure aws
