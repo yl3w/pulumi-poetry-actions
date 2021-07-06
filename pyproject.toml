@@ -6,9 +6,12 @@ authors = ["Bhaskar Maddala <maddalab@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
+pulumi-aws = "^4.10.0"
+pulumi = "^3.6.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
+pre-commit = "^2.13.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
