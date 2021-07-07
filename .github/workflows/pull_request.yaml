@@ -44,13 +44,14 @@ jobs:
             #          Run pulumi in preview mode
             # ----------------------------------------------
 
-            - name: Run pulumi preview
+            - name: Install pulumi via pip
               run: |
-                  which pulumi
-                  poetry run pulumi login s3://accrue-pulumi
-                  poetry run pulumi preview -s dev
-              # uses: pulumi/actions@v3
-              # with:
-              #     command: preview
-              #     stack-name: dev
-              #     cloud-url: s3://accrue-pulumi
+                  pip install pulumi
+                  pip install pulumi-aws
+
+            - name: Run pulumi preview
+              uses: pulumi/actions@v3
+              with:
+                  command: preview
+                  stack-name: dev
+                  cloud-url: s3://accrue-pulumi
