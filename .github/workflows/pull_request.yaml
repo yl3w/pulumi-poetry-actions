@@ -34,8 +34,7 @@ jobs:
             - name: Install Poetry
               uses: snok/install-poetry@v1.1.6
               with:
-                  virtualenvs-create: false
-                  virtualenvs-in-project: false
+                  virtualenvs-create: true
 
             - name: Install dependencies
               run: |
@@ -44,6 +43,18 @@ jobs:
             # ----------------------------------------------
             #          Run pulumi in preview mode
             # ----------------------------------------------
+
+            # NO COMBINATION OF INSTALLING PULUMI USING POETRY WORKS
+            # ATTEMPTS MADE WITH AND WITHOUT VIRTUAL ENVIRONMENTS
+            # IN POETRY CONFIGURATION.
+
+            # THE WORKAROUND BELOW OF INSTALLING USING PIP WORKS
+            # WHEN NOT DOING THIS `pulumi/actions preview` WILL FAIL
+            # WITH A PYTHON IMPORT ERROR
+            - name: Install dependencies (globally?) via pip
+              run: |
+                  poetry export -f requirements.txt --output requirements.txt --dev
+                  pip install -r requirements.txt
 
             - name: Run pulumi preview
               uses: pulumi/actions@v3
