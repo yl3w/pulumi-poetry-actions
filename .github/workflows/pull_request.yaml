@@ -44,13 +44,21 @@ jobs:
             #          Run pulumi in preview mode
             # ----------------------------------------------
 
-            - name: Run pulumi preview
+            # NO COMBINATION OF INSTALLING PULUMI USING POETRY WORKS
+            # ATTEMPTS MADE WITH AND WITHOUT VIRTUAL ENVIRONMENTS
+            # IN POETRY CONFIGURATION.
+
+            # THE WORKAROUND BELOW OF INSTALLING USING PIP WORKS
+            # WHEN NOT DOING THIS `pulumi/actions preview` WILL FAIL
+            # WITH A PYTHON IMPORT ERROR
+            - name: Install dependencies (globally?) via pip
               run: |
-                  which pulumi
-                  poetry run pulumi login s3://accrue-pulumi
-                  poetry run pulumi preview -s dev
-              # uses: pulumi/actions@v3
-              # with:
-              #     command: preview
-              #     stack-name: dev
-              #     cloud-url: s3://accrue-pulumi
+                  poetry export -f requirements.txt --output requirements.txt --dev
+                  pip install -r requirements.txt
+
+            - name: Run pulumi preview
+              uses: pulumi/actions@v3
+              with:
+                  command: preview
+                  stack-name: dev
+                  cloud-url: s3://accrue-pulumi
